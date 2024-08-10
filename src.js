@@ -49,26 +49,36 @@ operandButtons.forEach(el => {
   el.addEventListener('click', (event) => {
     et = event.target;
 
-    if (state === 11 && et.innerHTML==='-' && inputNumberOne.length===0){
+    //Logic to enter negative before number
+    if ((state === 11) && et.innerHTML==='-' && inputNumberOne.length===0){
       display.innerHTML='-';
       inputNumberOne.push('-')
+    }
+    if ((state === 21) && et.innerHTML==='-'){
+      display.innerHTML+='-';
+      inputNumberTwo.push('-')
     } 
 
+    //Second input operator select
     if (state === 22){
       state = 23;
       console.log('STATE IS NOW 23 OPB')
       stateLogic(et.innerHTML);
     }
     
+    
     if (state === 12 || state === 22) {
+
       operand = et.innerHTML;
       amountOfOperands++;
+
       if (amountOfOperands > 1) {
         operand = et.innerHTML;
         state = 0;
         console.log('STATE IS NOW 0 OPB')
         stateLogic(et.innerHTML);
       }
+      
       stateLogic(et.innerHTML);
       state = 21;
       console.log('STATE IS NOW 21 OPB')
@@ -146,7 +156,7 @@ function decideCalculation() {
 function add() {
   let in1 = inputNumberOne.join('');
   let in2 = inputNumberTwo.join('');
-  //console.log(`${inputNumberOne} KKK ${inputNumberTwo} DONE ${in1} KKK ${in2}`);
+  console.log(`${inputNumberOne} KKK ${inputNumberTwo} DONE ${in1} KKK ${in2}`);
   let sum = Number(in1)+Number(in2);
   let sumRounded = Math.round(sum * 10) / 10
   display.innerHTML = sumRounded;
@@ -156,7 +166,7 @@ function add() {
 function subtract() {
   let in1 = inputNumberOne.join('');
   let in2 = inputNumberTwo.join('');
-  //console.log(`${inputNumberOne} KKK ${inputNumberTwo} DONE ${in1} KKK ${in2}`);
+  console.log(`${inputNumberOne} KKK ${inputNumberTwo} DONE ${in1} KKK ${in2}`);
   let sum = Number(in1)-Number(in2);
   let sumRounded = Math.round(sum * 10) / 10
   display.innerHTML = sumRounded;
@@ -166,7 +176,7 @@ function subtract() {
 function multiply() {
   let in1 = inputNumberOne.join('');
   let in2 = inputNumberTwo.join('');
-  //console.log(`${inputNumberOne} KKK ${inputNumberTwo} DONE ${in1} KKK ${in2}`);
+  console.log(`${inputNumberOne} KKK ${inputNumberTwo} DONE ${in1} KKK ${in2}`);
   let sum = Number(in1)*Number(in2);
   let sumRounded = Math.round(sum * 10) / 10
   display.innerHTML = sumRounded;
@@ -176,7 +186,7 @@ function multiply() {
 function divide() {
   let in1 = inputNumberOne.join('');
   let in2 = inputNumberTwo.join('');
-  //console.log(`${inputNumberOne} KKK ${inputNumberTwo} DONE ${in1} KKK ${in2}`);
+  console.log(`${inputNumberOne} KKK ${inputNumberTwo} DONE ${in1} KKK ${in2}`);
   let sum = Number(in1)/Number(in2);
   let sumRounded = Math.round(sum * 10) / 10
   display.innerHTML = sumRounded;
