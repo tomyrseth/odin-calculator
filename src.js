@@ -1,12 +1,7 @@
 /*
-Calculator:
+Calculator states:
 
-FI = FIRST INPUT
-SI = SECOND INPUT
-OP = OPERAND
 NUM = NUMBER
-EQ = EQUAL
-# = ONLY ALLOWED
 
 STATES:
 
@@ -16,6 +11,7 @@ STATES:
 22: SECOND-INPUT, NUM SELECTED, ALLOW ALL
 23: SECOND-INPUT, OPERATOR OR EQUAL SELECTED, DO CALCULATION
 0: TWO OPERANDS SELECTED, DO CALCULATION
+
 */
 
 let state = 11;
@@ -66,12 +62,13 @@ operandButtons.forEach(el => {
       stateLogic(et.innerHTML);
     }
     
-    
+    //First input operator select
     if (state === 12 || state === 22) {
 
       operand = et.innerHTML;
       amountOfOperands++;
 
+      //Double operator check
       if (amountOfOperands > 1) {
         operand = et.innerHTML;
         state = 0;
@@ -213,60 +210,3 @@ function resetHard() {
   console.log('STATE IS NOW 11')
   amountOfOperands = 0;
 }
-
-
-
-
-// buttons.forEach(el => {
-//   el.addEventListener('click', (event) => {
-//     et = event.target;
-
-//     //Decide number inputs
-//     if (et.classList.contains('num')) {
-//       if (!firstInput) {
-//         inputNumberTwo.push(et.innerHTML);
-//         display.innerHTML += et.innerHTML;
-//       }
-
-//       inputNumberOne.push(et.innerHTML);
-//       if (display.innerHTML === '0') display.innerHTML = et.innerHTML;
-//       else {
-//         display.innerHTML += et.innerHTML;
-//       } 
-//     }
-
-//     //Operand Select
-//     if (et.classList.contains('op') &&
-//        (inputNumberOne.length !== 0) &&
-//        (inputNumberTwo.length === 0)) {
-//       firstInput = false;
-//       display.innerHTML += et.innerHTML;
-//       decideOperand(et.innerHTML);
-//       console.log(operand);
-//       operandIsDecided = true;
-//     }
-
-//     //Equal
-//     if (et.classList.contains('eq') && 
-//     (inputNumberOne.length !== 0) &&
-//     (inputNumberTwo.length !== 0) &&
-//     (operandIsDecided)){
-//       switch (operand) {
-//         case 'add':
-//           add();
-//           break;
-//         case 'subtract':
-//           subtract();
-//           break;
-//         case 'multiply':
-//           multiply();
-//           break;
-//         case 'divide':
-//           divide();
-//           break;
-//         default:
-//           console.log(`Nothing matches ${et.innerHTML}.`);
-//       }
-//     }
-//   });
-// });
