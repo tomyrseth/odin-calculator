@@ -54,7 +54,7 @@ operandButtons.forEach(el => {
       display.innerHTML='-';
       inputNumberOne.push('-')
     }
-    if ((state === 21) && et.innerHTML==='-'){
+    if ((state === 21) && et.innerHTML==='-' && amountOfOperands<0){
       display.innerHTML+='-';
       inputNumberTwo.push('-')
     } 
@@ -78,7 +78,7 @@ operandButtons.forEach(el => {
         console.log('STATE IS NOW 0 OPB')
         stateLogic(et.innerHTML);
       }
-      
+
       stateLogic(et.innerHTML);
       state = 21;
       console.log('STATE IS NOW 21 OPB')
