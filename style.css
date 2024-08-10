@@ -1,0 +1,88 @@
+h1, h2, h3, p, button {
+  font-family: Roboto, arial;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(86, 100, 139);
+}
+
+.calc-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: rgb(44, 44, 44);
+  border-radius: 15px;
+  height: 950px;
+  width: 600px;
+  margin-top: 100px;
+  box-shadow: rgba(0, 0, 0, 0.8) 0px 7px 30px 0px;
+}
+
+.display-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: rgb(70, 70, 70);
+  height: 150px;
+  width: 550px;
+  margin-top: 20px;
+  border-radius: 15px;
+}
+
+.buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  height: 600px;
+  padding: 0;
+  margin-bottom: 10px;
+}
+.btn-c {
+  color: white;
+  font-size: 48px;
+  height: 130px;
+  width: 130px;
+  margin: 0;
+  background-color: rgb(58, 58, 58);
+  border: solid rgb(168, 168, 168) 2px;
+  border-radius: 15px;
+  transition: 0.1s;
+  margin-left: 25px;
+  align-self: flex-start;
+}
+.btn {
+  color: rgb(210, 210, 210);
+  font-size: 48px;
+  height: 130px;
+  width: 130px;
+  margin: 0;
+  background-color: rgb(58, 58, 58);
+  border: solid rgb(168, 168, 168) 2px;
+  border-radius: 15px;
+  transition: 0.1s;
+  margin: 5px;
+}
+
+.btn:hover, .btn-c:hover{
+  scale: 1.02;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 7px 20px 0px;
+  color: rgb(255, 255, 255);
+}
+
+.btn:active, .btn-c:active {
+  opacity: 0.6;
+  scale: 1;
+}
+
+.display-text {
+  color: white;
+  font-size: 80px;
+  margin-right: 20px;
+}
