@@ -22,8 +22,8 @@ body {
 
   background-color: rgb(44, 44, 44);
   border-radius: 15px;
-  height: 950px;
-  width: 600px;
+  height: 600px;
+  width: 390px;
   margin-top: 100px;
   box-shadow: rgba(0, 0, 0, 0.8) 0px 7px 30px 0px;
 
@@ -34,8 +34,8 @@ body {
   justify-content: flex-end;
   align-items: center;
   background-color: rgb(70, 70, 70);
-  height: 150px;
-  width: 550px;
+  height: 170px;
+  width: 360px;
   margin-top: 20px;
   border-radius: 15px;
   box-shadow: rgba(0, 0, 0, 0.8) 0px -10px 5px 0px;
@@ -58,30 +58,31 @@ body {
 }
 .btn-c {
   color: white;
-  font-size: 48px;
-  height: 130px;
-  width: 130px;
+  font-size: 28px;
+  height: 80px;
+  width: 80px;
   margin: 0;
   background-color: rgb(58, 58, 58);
-  border: solid rgb(0, 0, 0) 2px;
+  border: solid rgb(0, 0, 0) 1px;
   border-radius: 15px;
   transition: 0.1s;
-  margin-left: 25px;
+  margin-left: 21px;
+  margin-top: 20px;
   align-self: flex-start;
-  box-shadow: rgba(0, 0, 0, 1) 0px 7px 10px 0px;
+  box-shadow: rgba(0, 0, 0, 1) 0px 3px 5px 0px;
 }
 .btn {
   color: rgb(210, 210, 210);
-  font-size: 48px;
-  height: 130px;
-  width: 130px;
+  font-size: 28px;
+  height: 80px;
+  width: 80px;
   margin: 0;
   background-color: rgb(58, 58, 58);
-  border: solid rgb(0, 0, 0) 2px;
+  border: solid rgb(0, 0, 0) 1px;
   border-radius: 15px;
   transition: 0.05s;
   margin: 5px;
-  box-shadow: rgba(0, 0, 0, 1) 0px 7px 10px 0px;
+  box-shadow: rgb(0, 0, 0) 0px 3px 5px 0px;
 }
 
 .btn:hover, .btn-c:hover{
@@ -90,13 +91,13 @@ body {
 }
 
 .btn:active, .btn-c:active {
-  opacity: 0.9;
+  opacity: 0.6;
   scale: 0.99;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 7px 20px 0px;
 }
 
 .display-text {
   color: white;
-  font-size: 120px;
+  font-size: 80px;
   margin-right: 20px;
 }
