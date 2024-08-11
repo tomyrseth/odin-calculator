@@ -7,7 +7,7 @@ STATES:
 
 11: FIRST-INPUT ONLY NUM (NOT 0) AND NEGATIVE
 12: FIRST-INPUT, NUM SELECTED, ALLOW NUM && OPERATOR
-21: SECOND-INPUT, OPERATOR SELECTED, ALLOW ONLY NUM (NOT 0) && NEGATIVE
+21: SECOND-INPUT, OPERATOR SELECTED, ALLOW ONLY NUM && NEGATIVE
 22: SECOND-INPUT, NUM SELECTED, ALLOW ALL
 23: SECOND-INPUT, OPERATOR OR EQUAL SELECTED, DO CALCULATION
 0: TWO OPERANDS SELECTED, DO CALCULATION
@@ -15,7 +15,7 @@ STATES:
 */
 
 let state = 11;
-//console.log('STATE IS NOW 11');
+console.log('STATE IS NOW 11');
 let inputNumberOne = [];
 let inputNumberTwo = [];
 
@@ -30,6 +30,7 @@ const numberButtons = document.querySelectorAll('.num');
 const operandButtons = document.querySelectorAll('.op');
 const eqButton = document.querySelector('.eq');
 const cButton = document.querySelector('.btn-c');
+const dotButton = document.querySelector('.dot');
 
 cButton.addEventListener('click', () => resetHard());
 
@@ -50,7 +51,8 @@ operandButtons.forEach(el => {
       display.innerHTML='-';
       inputNumberOne.push('-')
     }
-    if ((state === 21) && et.innerHTML==='-' && amountOfOperands<0){
+    if ((state === 21) && et.innerHTML==='-' && amountOfOperands<2){
+      amountOfOperands++;
       display.innerHTML+='-';
       inputNumberTwo.push('-')
     } 
@@ -58,7 +60,7 @@ operandButtons.forEach(el => {
     //Second input operator select
     if (state === 22){
       state = 23;
-      //console.log('STATE IS NOW 23 OPB')
+      console.log('STATE IS NOW 23 OPB')
       stateLogic(et.innerHTML);
     }
     
@@ -72,13 +74,13 @@ operandButtons.forEach(el => {
       if (amountOfOperands > 1) {
         operand = et.innerHTML;
         state = 0;
-        //console.log('STATE IS NOW 0 OPB')
+        console.log('STATE IS NOW 0 OPB')
         stateLogic(et.innerHTML);
       }
 
       stateLogic(et.innerHTML);
       state = 21;
-      //console.log('STATE IS NOW 21 OPB')
+      console.log('STATE IS NOW 21 OPB')
     }
   
   });
@@ -89,7 +91,7 @@ eqButton.addEventListener('click', (event) => {
 
     if (state === 22) {
       state = 23;
-      //console.log('STATE IS NOW 23 EQB')
+      console.log('STATE IS NOW 23 EQB')
       stateLogic(et.innerHTML);
     }
 });
@@ -105,21 +107,24 @@ function stateLogic(value) {
       inputNumberOne.push(value);
       display.innerHTML+=value;
       state = 12;
-      //console.log('STATE IS NOW 12 SL')
+      console.log('STATE IS NOW 12 SL')
       break;
     case 12:
       if (!operandList.includes(value)) inputNumberOne.push(value);
       display.innerHTML+=value;
       break;
     case 21:
-      //Dont allow 0 to be first
-      if(value === '0' && inputNumberTwo.length === 0) break;
+      if(value === '0'){
+        divideByZero();
+        break;
+      } 
       inputNumberTwo.push(value);
       display.innerHTML+=value;
       state = 22;
-      //console.log('STATE IS NOW 22 SL');
+      console.log('STATE IS NOW 22 SL');
       break;
     case 22:
+      if (value === '0') break;
       if (!operandList.includes(value)) inputNumberTwo.push(value);
       display.innerHTML+=value;
     break;
@@ -131,7 +136,7 @@ function stateLogic(value) {
       decideCalculation();
       break;
     default:
-      //console.log(`error, state is ${state}`);
+      console.log(`error, state is ${state}`);
   }
 }
 
@@ -150,7 +155,7 @@ function decideCalculation() {
       divide(inputNumberOne, inputNumberTwo);
       break;
     default:
-      //console.log('no operator found that matches ', operand);
+      console.log('no operator found that matches ', operand);
   }
 }
 
@@ -158,7 +163,7 @@ function decideCalculation() {
 function add() {
   let in1 = inputNumberOne.join('');
   let in2 = inputNumberTwo.join('');
-  //console.log(`1: ${inputNumberOne} 2: ${inputNumberTwo} DONE ${in1} ${in2}`);
+  console.log(`1: ${inputNumberOne} 2: ${inputNumberTwo} DONE ${in1} ${in2}`);
   let sum = Number(in1)+Number(in2);
   let sumRounded = Math.round(sum * 10) / 10
   display.innerHTML = sumRounded;
@@ -168,7 +173,7 @@ function add() {
 function subtract() {
   let in1 = inputNumberOne.join('');
   let in2 = inputNumberTwo.join('');
-  //console.log(`1: ${inputNumberOne} 2: ${inputNumberTwo} DONE ${in1} ${in2}`);
+  console.log(`1: ${inputNumberOne} 2: ${inputNumberTwo} DONE ${in1} ${in2}`);
   let sum = Number(in1)-Number(in2);
   let sumRounded = Math.round(sum * 10) / 10
   display.innerHTML = sumRounded;
@@ -178,7 +183,7 @@ function subtract() {
 function multiply() {
   let in1 = inputNumberOne.join('');
   let in2 = inputNumberTwo.join('');
-  //console.log(`1: ${inputNumberOne} 2: ${inputNumberTwo} DONE ${in1} ${in2}`);
+  console.log(`1: ${inputNumberOne} 2: ${inputNumberTwo} DONE ${in1} ${in2}`);
   let sum = Number(in1)*Number(in2);
   let sumRounded = Math.round(sum * 10) / 10
   display.innerHTML = sumRounded;
@@ -188,11 +193,20 @@ function multiply() {
 function divide() { 
   let in1 = inputNumberOne.join('');
   let in2 = inputNumberTwo.join('');
-  //console.log(`1: ${inputNumberOne} 2: ${inputNumberTwo} DONE ${in1} ${in2}`);
+  console.log(`1: ${inputNumberOne} 2: ${inputNumberTwo} DONE ${in1} ${in2}`);
   let sum = Number(in1)/Number(in2);
   let sumRounded = Math.round(sum * 10) / 10
   display.innerHTML = sumRounded;
   resetSoft(sumRounded);
+}
+
+function divideByZero() {
+  numberButtons.forEach((el) => el.remove());
+  operandButtons.forEach((el) => el.remove());
+  eqButton.remove();
+  cButton.remove();
+  dotButton.remove();
+  display.innerHTML ='💀';
 }
 
 function resetSoft(in1) {
@@ -201,7 +215,7 @@ function resetSoft(in1) {
   operand = null;
   display.innerHTML = in1;
   state = 12;
-  //console.log('STATE IS NOW 12 RESET')
+  console.log('STATE IS NOW 12 RESET')
   amountOfOperands = 0;
 }
 
@@ -212,6 +226,6 @@ function resetHard() {
   operandStore = null;
   display.innerHTML = '';
   state = 11;
-  //console.log('STATE IS NOW 11')
+  console.log('STATE IS NOW 11')
   amountOfOperands = 0;
 }
