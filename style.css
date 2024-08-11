@@ -38,7 +38,7 @@ body {
   width: 360px;
   margin-top: 20px;
   border-radius: 15px;
-  box-shadow: rgba(0, 0, 0, 0.8) 0px -10px 5px 0px;
+  box-shadow: rgba(0, 0, 0, 0.8) 0px -4px 5px 0px;
 
   overflow: hidden;
 }
