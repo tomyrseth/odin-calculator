@@ -51,7 +51,10 @@ operandButtons.forEach(el => {
       display.innerHTML='-';
       inputNumberOne.push('-')
     }
-    if ((state === 21) && et.innerHTML==='-' && amountOfOperands<2){
+    if ((state === 21) &&
+        (et.innerHTML==='-') &&
+        (display.innerHTML.slice(-1) !== '-') && 
+        amountOfOperands<2) {
       amountOfOperands++;
       display.innerHTML+='-';
       inputNumberTwo.push('-')
@@ -206,7 +209,7 @@ function divideByZero() {
   eqButton.remove();
   cButton.remove();
   dotButton.remove();
-  display.innerHTML ='💀';
+  display.innerHTML ='💀💀💀💀';
 }
 
 function resetSoft(in1) {
