@@ -53,7 +53,7 @@ operandButtons.forEach(el => {
     }
     if ((state === 21) &&
         (et.innerHTML==='-') &&
-        (display.innerHTML.slice(-1) !== '-') && 
+        (lastCharOfDisplay() !== '-') && 
         amountOfOperands<2) {
       amountOfOperands++;
       display.innerHTML+='-';
@@ -118,16 +118,20 @@ function stateLogic(value) {
       break;
     case 21:
       if(value === '0'){
-        divideByZero();
+        if(operand==='/'){
+          divideByZero();
+          break;
+        } 
+        decideCalculation();
         break;
       } 
+        
       inputNumberTwo.push(value);
       display.innerHTML+=value;
       state = 22;
       console.log('STATE IS NOW 22 SL');
       break;
     case 22:
-      if (value === '0') break;
       if (!operandList.includes(value)) inputNumberTwo.push(value);
       display.innerHTML+=value;
     break;
@@ -210,6 +214,10 @@ function divideByZero() {
   cButton.remove();
   dotButton.remove();
   display.innerHTML ='💀💀💀💀';
+}
+
+function lastCharOfDisplay(){
+  return display.innerHTML.slice(-1);
 }
 
 function resetSoft(in1) {
