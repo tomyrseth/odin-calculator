@@ -42,6 +42,11 @@ numberButtons.forEach(el => {
   });
 });
 
+function setState(val, from) {
+  state = val;
+  console.log(`state change: ${state}, changed from: ${from}`);
+}
+
 operandButtons.forEach(el => {
   el.addEventListener('click', (event) => {
     et = event.target;
@@ -62,8 +67,7 @@ operandButtons.forEach(el => {
 
     //Second input operator select
     if (state === 22){
-      state = 23;
-      //console.log('STATE IS NOW 23 OPB')
+      setState(23, 'operandButtons');
       stateLogic(et.innerHTML);
     }
     
@@ -76,14 +80,12 @@ operandButtons.forEach(el => {
       //Double operator check
       if (amountOfOperands > 1) {
         operand = et.innerHTML;
-        state = 0;
-        //console.log('STATE IS NOW 0 OPB')
+        setState(0, 'operandButtons');
         stateLogic(et.innerHTML);
       }
 
       stateLogic(et.innerHTML);
-      state = 21;
-      //console.log('STATE IS NOW 21 OPB')
+      setState(21, 'operandButtons');
     }
   
   });
@@ -93,8 +95,7 @@ eqButton.addEventListener('click', (event) => {
     et = event.target;
 
     if (state === 22) {
-      state = 23;
-      //console.log('STATE IS NOW 23 EQB')
+      setState(23, 'equalButton');
       stateLogic(et.innerHTML);
     }
 });
@@ -109,8 +110,7 @@ function stateLogic(value) {
       if(value === '0' && operandList.includes(inputNumberOne[inputNumberOne.length -1])) break;
       inputNumberOne.push(value);
       display.innerHTML+=value;
-      state = 12;
-      //console.log('STATE IS NOW 12 SL')
+      setState(12, 'state switch case 11');
       break;
     case 12:
       if (!operandList.includes(value)) inputNumberOne.push(value);
@@ -128,8 +128,7 @@ function stateLogic(value) {
         
       inputNumberTwo.push(value);
       display.innerHTML+=value;
-      state = 22;
-      //console.log('STATE IS NOW 22 SL');
+      setState(22, 'state switch case 21');
       break;
     case 22:
       if (!operandList.includes(value)) inputNumberTwo.push(value);
@@ -225,8 +224,7 @@ function resetSoft(in1) {
   inputNumberTwo = [];
   operand = null;
   display.innerHTML = in1;
-  state = 12;
-  //console.log('STATE IS NOW 12 RESET')
+  setState(12, 'reset soft');
   amountOfOperands = 0;
 }
 
@@ -236,7 +234,6 @@ function resetHard() {
   operand = null;
   operandStore = null;
   display.innerHTML = '';
-  state = 11;
-  //console.log('STATE IS NOW 11')
+  setState(11, 'reset hard');
   amountOfOperands = 0;
 }
