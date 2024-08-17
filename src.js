@@ -42,11 +42,6 @@ numberButtons.forEach(el => {
   });
 });
 
-function setState(val, from) {
-  state = val;
-  console.log(`state change: ${state}, changed from: ${from}`);
-}
-
 operandButtons.forEach(el => {
   el.addEventListener('click', (event) => {
     et = event.target;
@@ -100,6 +95,11 @@ eqButton.addEventListener('click', (event) => {
     }
 });
 
+function setState(val, from) {
+  state = val;
+  //Debug:
+  //console.log(`state change: ${state}, changed from: ${from}`);
+}
 
 function stateLogic(value) {
 
@@ -164,7 +164,6 @@ function decideCalculation() {
       //console.log('no operator found that matches ', operand);
   }
 }
-
 
 function add() {
   let in1 = inputNumberOne.join('');
